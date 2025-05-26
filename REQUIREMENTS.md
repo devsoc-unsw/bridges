@@ -4,6 +4,11 @@ This document outlines the core feature requirements for the MVP release of the 
 
 ---
 
+## 📐 View the wireframes here
+👉 [Figma – Bridges Wireframes](https://www.figma.com/design/WdcNLk34jY6GyhW54GLtTD/Wireframes?node-id=0-1&t=RjHSEahkGgskzj2i-1)
+
+---
+
 ## 🌐 Public Site (No Login Required)
 
 ### 1. Homepage
