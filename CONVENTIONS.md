@@ -1,4 +1,4 @@
-# 🛠️ Contributing Guide
+# 🛠️ Contributing Conventions Guide
 
 Welcome to the **Bridges** project! This document outlines how we work collaboratively and consistently across the codebase.
 
