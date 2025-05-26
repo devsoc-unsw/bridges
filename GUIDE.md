@@ -22,9 +22,7 @@ Use the format: `<type>/<short-description>`
 
 ## ✅ Commit Message Convention (Conventional Commits)
 
-Use the format:
-
-< type >(optional scope): short description
+Use the format: `<type>(optional scope): short description`
 
 
 ### Common types:
