@@ -4,7 +4,7 @@
 
 ### POST /api/auth/register
 
-Registers a new society.
+Registers a new society account.
 
 ### POST /api/auth/login
 
@@ -20,17 +20,29 @@ Ends the current session.
 
 ---
 
-## Society Management
+## Society Page Management
 
 ### GET /api/societies
 
 List societies (filtered).
 
-### GET /api/societies/:id
+### GET /api/societies/:societyId
+
+Fetches a single society's public profile (incl. events).
+
+### GET /api/societies/:societyId
 
 Fetches a single society's public profile.
 
-### PUT /api/societies/:id
+---
+
+## Society Profile Management
+
+### GET /api/profile/:societyId
+
+Fetches a single society's private profile details.
+
+### PUT /api/profile/:societyId
 
 Updates society info (admins only).
 
@@ -40,13 +52,13 @@ Updates society info (admins only).
 
 ### GET /api/admin/requests
 
-List of unverified societies.
+List of unverified societies (pending and denied).
 
-### PUT /api/admin/verify/:id
+### PUT /api/admin/verify/:societyId
 
 Approves a society request.
 
-### PUT /api/admin/deny/:id
+### PUT /api/admin/deny/:societyId
 
 Rejects a society.
 
@@ -76,19 +88,19 @@ Creates a one-off event (admin only).
 
 List all events.
 
-### GET /api/events/:id
+### GET /api/events/:eventId
 
 Single event details.
 
-### PUT /api/events/:id
+### PUT /api/events/:eventId
 
 Update event details (admin only).
 
-### POST /api/events/:id/admins
+### POST /api/events/:eventId/admins
 
 Adds a society as an event admin (admin only).
 
-### DELETE /api/events/:id/admins/:societyId
+### DELETE /api/events/:eventId/admins/:societyId
 
 Removes a society as an event admin.
 
@@ -100,8 +112,12 @@ Removes a society as an event admin.
 
 Upload a PDF for AI-based info extraction.
 
-### POST /api/social/scrape
+### POST /api/social/scrapeDetails
 
-Paste social links to auto-fill followers.
+Paste social links to auto-fill followers and other information.
+
+### POST /api/social/scrapeEvents
+
+Paste social links to auto-fill events.
 
 ---
