@@ -1,14 +1,14 @@
 # Bridges API Specification
 
-## Auth & User Management
+## Auth & Session Management
 
 ### POST /api/auth/register
 
-Registers a new user.
+Registers a new society.
 
 ### POST /api/auth/login
 
-Authenticates user credentials and starts session.
+Authenticates society credentials and starts session.
 
 ### GET /api/auth/session
 
@@ -22,10 +22,6 @@ Ends the current session.
 
 ## Society Management
 
-### POST /api/societies
-
-Creates a new society request.
-
 ### GET /api/societies
 
 List societies (filtered).
@@ -38,14 +34,6 @@ Fetches a single society's public profile.
 
 Updates society info (admins only).
 
-### POST /api/societies/:id/admins
-
-Adds a new society admin (admin only).
-
-### DELETE /api/societies/:id/admins/:userId
-
-Removes a society admin.
-
 ---
 
 ## Verification & Super Admin
@@ -54,11 +42,11 @@ Removes a society admin.
 
 List of unverified societies.
 
-### POST /api/admin/verify/:id
+### PUT /api/admin/verify/:id
 
 Approves a society request.
 
-### DELETE /api/admin/deny/:id
+### PUT /api/admin/deny/:id
 
 Rejects a society.
 
@@ -95,6 +83,14 @@ Single event details.
 ### PUT /api/events/:id
 
 Update event details (admin only).
+
+### POST /api/events/:id/admins
+
+Adds a society as an event admin (admin only).
+
+### DELETE /api/events/:id/admins/:societyId
+
+Removes a society as an event admin.
 
 ---
 
