@@ -1,10 +1,11 @@
 # 📋 Bridges MVP Requirements
 
-This document outlines the core feature requirements for the MVP release of the Bridges platform, designed to connect UNSW societies with potential sponsors.
+This document outlines the core feature requirements for the MVP release of the **Bridges** platform, designed to connect UNSW societies with potential sponsors.
 
 ---
 
-## 📐 View the wireframes here
+## 📐 View the Wireframes
+
 👉 [Figma – Bridges Wireframes](https://www.figma.com/design/WdcNLk34jY6GyhW54GLtTD/Wireframes?node-id=0-1&t=RjHSEahkGgskzj2i-1)
 
 ---
@@ -35,56 +36,55 @@ This document outlines the core feature requirements for the MVP release of the 
   - Relevant degrees/interests
   - "Open for Sponsors" toggle
   - Event-specific: event type, upcoming/past
-- Only **publicly visible** listings are shown
-- No sponsor login is required to access or browse
+- **All listings are public** – no visibility toggles
+- **No sponsor login required**
+- Any limited-access content (e.g., private decks) will be shared manually via email by the society (contact buttons will be accessible through the website that lead viewers to an email thread)
+- Societies will be preloaded by scraping **ARC** so that listings are not empty at launch
 
 ---
 
 ### 3. Society Profiles
 
+- Main entity in the system is the **Society**, not individual users
 - Profile creation options:
   - Manual form entry (name, mission, socials, etc.)
   - PDF upload → AI-assisted auto-fill
-- Admin can edit all fields regardless of creation method
+- Admins can edit all fields regardless of creation method
 - Sections include:
   - Logo, name, mission, contact info
   - Social links (LinkedIn, Instagram)
   - Sponsorship history
   - Events associated with society
   - Optional upload of sponsorship deck
-- Visibility settings:
-  - 🌐 **Public** – listed in Browse
-  - 🔗 **Link-only** – unlisted, shareable via URL
-  - ✉️ **Invite-only** (optional/future) – email-restricted access
-- Link-based visibility mimics Google Docs-style access:
-  - No need for sponsors to create accounts
-  - Society controls access granularity
+- Visibility:
+  - 🌐 Public only
+- Link-based access may be added in future but is not part of MVP
+- No sponsor accounts or login flows needed
 
 ---
 
 ### 4. Event Pages
 
-- Each event is tied to a society profile
+- Each event belongs to a society
 - Displays:
   - Title, description, tags, date
   - Cover image (optional)
   - Contact CTA (e.g., "Sponsor This Event")
-  - Parent society reference
-- Visibility:
-  - Public or link-only (inherits from parent society)
+  - Parent society link
+- Visibility is **always public** in MVP
 
 ---
 
 ### 5. Resources & Templates
 
-- Open-access content to help societies get sponsored
+- Open-access content for societies
 - Examples:
   - Sponsorship proposal templates
   - Media kits
   - Cold email samples
   - Outreach tips
-- Optional: submission form to let societies contribute their own resources
-  - Submissions reviewed by platform admin before publishing
+- Optional: submission form to allow societies to contribute resources
+  - Admin moderation before publishing
 
 ---
 
@@ -92,52 +92,27 @@ This document outlines the core feature requirements for the MVP release of the 
 
 ### Authentication
 
-- Google login via NextAuth
-- Entry points:
-  - "Create Profile" → onboarding flow
-  - "Edit My Profile" → dashboard
+- Login via **society email**
+- After login:
+  - New users go to society onboarding
+  - Returning users redirected to Browse
 
 ---
 
 ### Dashboard Features
 
 #### Overview
-- Summary of current profile and event listings
-- Visibility setting overview
+
+- Summary of society profile and events
 
 #### Profile Editor
-- Edit all profile fields manually
-- Re-upload PDF to update AI-generated content
-- Preview public-facing profile
+
+- Edit all fields
+- Upload or re-upload PDF to re-parse with AI
+- Preview public profile
 
 #### Event Manager
-- Add/edit events
-- Toggle "Looking for Sponsors"
-- Set event visibility (public / link-only)
 
-#### Visibility Controls
-- For both profile and events:
-  - 🌐 Public
-  - 🔗 Link-only
-  - ✉️ Invite-only (future)
-
----
-
-## 🧠 Optional: Community-Contributed Resources (Future)
-
-- Logged-in societies can upload helpful templates and examples
-- Admins review content before publishing
-- Future “Community Picks” section highlights real success stories
-
-
-## 🔐 Link-Based Permissions System
-
-To avoid creating sponsor accounts:
-
-- Each society profile and event has visibility modes:
-  - 🌐 Public – browsable by anyone
-  - 🔗 Link-only – accessible via direct link only
-  - ✉️ Invite-only (optional future) – email-restricted
-- Sponsors can view content directly without logging in
-- Society admins manage visibility in their dashboard
-
+- Add or edit events
+- Mark “Looking for Sponsors”
+- Events always public for MVP
