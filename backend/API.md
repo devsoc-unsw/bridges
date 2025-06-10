@@ -40,7 +40,7 @@ Fetches a single society's private profile details.
 
 ### PUT /api/profile/:societyId
 
-Updates society info (admins only).
+Updates society's private info (admins only).
 
 ---
 
@@ -48,15 +48,15 @@ Updates society info (admins only).
 
 ### GET /api/admin/requests
 
-List of unverified societies (pending and denied).
+List of unverified societies (pending and denied) (super-admin only).
 
 ### PUT /api/admin/verify/:societyId
 
-Approves a society request.
+Approves a society request (super-admin only).
 
 ### PUT /api/admin/deny/:societyId
 
-Rejects a society.
+Rejects a society (super-admin only).
 
 ---
 
@@ -78,7 +78,7 @@ Supports filtering by:
 
 ### POST /api/events
 
-Creates a one-off event (admin only).
+Creates a one-off event.
 
 ### GET /api/events
 
@@ -98,7 +98,19 @@ Adds a society as an event admin (admin only).
 
 ### DELETE /api/events/:eventId/admins/:societyId
 
-Removes a society as an event admin.
+Removes a society as an event admin (admin only).
+
+---
+
+## Resources
+
+### GET /api/resources
+
+List all resources.
+
+### GET /api/resources/:resourceId
+
+Get single resource details.
 
 ---
 
