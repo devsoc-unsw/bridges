@@ -30,10 +30,6 @@ List societies (filtered).
 
 Fetches a single society's public profile (incl. events).
 
-### GET /api/societies/:societyId
-
-Fetches a single society's public profile.
-
 ---
 
 ## Society Profile Management
