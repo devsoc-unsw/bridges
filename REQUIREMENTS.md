@@ -23,6 +23,7 @@ This document outlines the core feature requirements for the MVP release of the 
   - Featured societies
   - Upcoming events
 - Social proof (testimonials, endorsement blurbs)
+- These are just examples we're pretty flexible about how the homepage should look
 
 ---
 
@@ -58,7 +59,6 @@ This document outlines the core feature requirements for the MVP release of the 
   - Optional upload of sponsorship deck
 - Visibility:
   - 🌐 Public only
-- Link-based access may be added in future but is not part of MVP
 - No sponsor accounts or login flows needed
 
 ---
