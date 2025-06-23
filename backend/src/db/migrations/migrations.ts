@@ -65,7 +65,10 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn('sponsor_id', 'uuid', (col) =>
       col.notNull().references('sponsors.id')
     )
-    .addPrimaryKeyConstraint('primary_key', ['society_id', 'sponsor_id'])
+    .addPrimaryKeyConstraint('society_sponsorships_pkey', [
+      'society_id',
+      'sponsor_id',
+    ])
     .execute();
 
   // Events
@@ -92,7 +95,7 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn('event_id', 'uuid', (col) =>
       col.notNull().references('events.id')
     )
-    .addPrimaryKeyConstraint('primary_key', ['society_id', 'event_id'])
+    .addPrimaryKeyConstraint('event_hosts_pkey', ['society_id', 'event_id'])
     .execute();
 
   await db.schema
@@ -103,7 +106,10 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn('sponsor_id', 'uuid', (col) =>
       col.notNull().references('sponsors.id')
     )
-    .addPrimaryKeyConstraint('primary_key', ['event_id', 'sponsor_id'])
+    .addPrimaryKeyConstraint('event_sponsorships_pkey', [
+      'event_id',
+      'sponsor_id',
+    ])
     .execute();
 
   // TODO: Indexes
