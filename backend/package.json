@@ -9,7 +9,8 @@
     "build": "tsc -p tsconfig.json",
     "lint": "prettier --check **/*.ts && eslint **/*.ts",
     "lint:fix": "prettier --write **/*.ts && eslint --fix **/*.ts",
-    "db:init": "tsx src/db/init.ts"
+    "migrate": "node dist/db/init.js",
+    "migrate:dev": "tsx src/db/init.ts"
   },
   "keywords": [],
   "author": "",
