@@ -8,7 +8,8 @@
     "dev": "nodemon src/index.ts",
     "build": "tsc -p tsconfig.json",
     "lint": "prettier --check **/*.ts && eslint **/*.ts",
-    "lint:fix": "prettier --write **/*.ts && eslint --fix **/*.ts"
+    "lint:fix": "prettier --write **/*.ts && eslint --fix **/*.ts",
+    "db:init": "tsx src/db/init.ts"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +27,7 @@
     "@types/cors": "^2.8.18",
     "@types/express": "^5.0.2",
     "@types/node": "^22.15.29",
+    "@types/pg": "^8.15.4",
     "@typescript-eslint/eslint-plugin": "^8.33.0",
     "@typescript-eslint/parser": "^8.33.0",
     "eslint": "^9.27.0",
@@ -37,6 +39,7 @@
     "prettier": "^3.5.3",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
+    "tsx": "^4.20.3",
     "typescript": "^5.8.3"
   }
 }
