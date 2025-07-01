@@ -93,7 +93,7 @@ export async function up(db: Kysely<any>): Promise<void> {
       col.notNull().references('society.id')
     )
     .addColumn('event_id', 'uuid', (col) =>
-      col.notNull().references('events.id')
+      col.notNull().references('event.id')
     )
     .addPrimaryKeyConstraint('event_host_pkey', ['society_id', 'event_id'])
     .execute();

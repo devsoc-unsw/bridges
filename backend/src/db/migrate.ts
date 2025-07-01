@@ -1,6 +1,4 @@
 import * as path from 'path';
-import dotenv from 'dotenv';
-import { Pool } from 'pg';
 import { promises as fs } from 'fs';
 import {
   Kysely,
@@ -9,24 +7,9 @@ import {
   FileMigrationProvider,
   CamelCasePlugin,
 } from 'kysely';
-
-// Load env vars from .env
-dotenv.config();
+import { db } from '../db';
 
 async function migrateToLatest() {
-  const db = new Kysely<any>({
-    dialect: new PostgresDialect({
-      pool: new Pool({
-        host: process.env.DB_HOST,
-        port: Number(process.env.DB_PORT),
-        database: process.env.DB_NAME,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-      }),
-    }),
-    plugins: [new CamelCasePlugin()],
-  });
-
   const migrator = new Migrator({
     db,
     provider: new FileMigrationProvider({

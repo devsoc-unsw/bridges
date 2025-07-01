@@ -24,4 +24,4 @@ ENV PORT=4000
 
 EXPOSE 4000
 
-CMD ["sh", "-c", "pnpm db:init && node dist/index.js"]
+CMD ["sh", "-c", "node dist/index.js"]
