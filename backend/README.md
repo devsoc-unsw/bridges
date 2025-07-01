@@ -2,25 +2,10 @@
 
 ## First Time Setup
 
-Install [pnpm](https://pnpm.io/installation).
-
-Then install dependencies:
-
-```bash
-pnpm install
-```
-
-Populate a `.env` file in the `backend` directory with the following content:
+Populate a `.env` file in the `backend` directory with the following content before you run docker-compose (at the root):
 
 ```env
-DATABASE_URL=postgres://postgres:postgres@localhost:5432/mydb
-```
-
-After running `docker-compose up`, you will need to migrate the database. You can do this by running the following commands:
-
-```bash
-pnpm build
-pnpm run migrate
+DATABASE_URL=postgres://postgres:postgres@bridges-db-1:5432/mydb
 ```
 
 ## Sample Kysely Usage
