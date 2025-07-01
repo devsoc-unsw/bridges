@@ -11,12 +11,7 @@ export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
 
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
-export interface EventHosts {
-  event_id: string;
-  society_id: string;
-}
-
-export interface Events {
+export interface Event {
   cover_image_url: string | null;
   description: string | null;
   end_date: Timestamp;
@@ -26,24 +21,29 @@ export interface Events {
   start_date: Timestamp;
 }
 
-export interface EventSponsorships {
+export interface EventHost {
+  event_id: string;
+  society_id: string;
+}
+
+export interface EventSponsorship {
   event_id: string;
   sponsor_id: string;
 }
 
-export interface Sessions {
+export interface Session {
   expires: Timestamp;
   id: Generated<string>;
   session_token: string;
   society_id: string;
 }
 
-export interface Socials {
+export interface Social {
   id: Generated<number>;
   society_id: string;
 }
 
-export interface Societies {
+export interface Society {
   contact_email: string;
   description: string | null;
   id: Generated<string>;
@@ -54,12 +54,12 @@ export interface Societies {
   name: string;
 }
 
-export interface SocietySponsorships {
+export interface SocietySponsorship {
   society_id: string;
   sponsor_id: string;
 }
 
-export interface Sponsors {
+export interface Sponsor {
   id: Generated<string>;
   logo_url: string | null;
   name: string;
@@ -73,13 +73,13 @@ export interface VerificationTokens {
 }
 
 export interface DB {
-  event_hosts: EventHosts;
-  event_sponsorships: EventSponsorships;
-  events: Events;
-  sessions: Sessions;
-  socials: Socials;
-  societies: Societies;
-  society_sponsorships: SocietySponsorships;
-  sponsors: Sponsors;
+  event: Event;
+  event_host: EventHost;
+  event_sponsorship: EventSponsorship;
+  session: Session;
+  social: Social;
+  society: Society;
+  society_sponsorship: SocietySponsorship;
+  sponsor: Sponsor;
   verification_tokens: VerificationTokens;
 }
