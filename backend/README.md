@@ -2,6 +2,14 @@
 
 ## First Time Setup
 
+Install [pnpm](https://pnpm.io/installation).
+
+Then install dependencies:
+
+```bash
+pnpm install
+```
+
 Populate a `.env` file in the `backend` directory with the following content:
 
 ```env
