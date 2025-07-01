@@ -3,7 +3,7 @@ import { Kysely, sql } from 'kysely';
 export async function up(db: Kysely<any>): Promise<void> {
   // Societies
   await db.schema
-    .createTable('societies')
+    .createTable('society')
     .addColumn('id', 'uuid', (col) =>
       col.primaryKey().defaultTo(sql`gen_random_uuid()`)
     )
@@ -19,21 +19,21 @@ export async function up(db: Kysely<any>): Promise<void> {
     .execute();
 
   await db.schema
-    .createTable('socials')
+    .createTable('social')
     .addColumn('id', 'serial', (col) => col.primaryKey())
     .addColumn('society_id', 'uuid', (col) =>
-      col.references('societies.id').onDelete('cascade').notNull()
+      col.references('society.id').onDelete('cascade').notNull()
     )
     .execute();
 
   // Auth
   await db.schema
-    .createTable('sessions')
+    .createTable('session')
     .addColumn('id', 'uuid', (col) =>
       col.primaryKey().defaultTo(sql`gen_random_uuid()`)
     )
     .addColumn('society_id', 'uuid', (col) =>
-      col.references('societies.id').onDelete('cascade').notNull()
+      col.references('society.id').onDelete('cascade').notNull()
     )
     .addColumn('session_token', 'text', (col) => col.notNull().unique())
     .addColumn('expires', 'timestamptz', (col) => col.notNull())
@@ -48,7 +48,7 @@ export async function up(db: Kysely<any>): Promise<void> {
 
   // Sponsors
   await db.schema
-    .createTable('sponsors')
+    .createTable('sponsor')
     .addColumn('id', 'uuid', (col) =>
       col.primaryKey().defaultTo(sql`gen_random_uuid()`)
     )
@@ -58,14 +58,14 @@ export async function up(db: Kysely<any>): Promise<void> {
     .execute();
 
   await db.schema
-    .createTable('society_sponsorships')
+    .createTable('society_sponsorship')
     .addColumn('society_id', 'uuid', (col) =>
-      col.notNull().references('societies.id')
+      col.notNull().references('society.id')
     )
     .addColumn('sponsor_id', 'uuid', (col) =>
-      col.notNull().references('sponsors.id')
+      col.notNull().references('sponsor.id')
     )
-    .addPrimaryKeyConstraint('society_sponsorships_pkey', [
+    .addPrimaryKeyConstraint('society_sponsorship_pkey', [
       'society_id',
       'sponsor_id',
     ])
@@ -73,7 +73,7 @@ export async function up(db: Kysely<any>): Promise<void> {
 
   // Events
   await db.schema
-    .createTable('events')
+    .createTable('event')
     .addColumn('id', 'uuid', (col) =>
       col.primaryKey().defaultTo(sql`gen_random_uuid()`)
     )
@@ -88,25 +88,25 @@ export async function up(db: Kysely<any>): Promise<void> {
     .execute();
 
   await db.schema
-    .createTable('event_hosts')
+    .createTable('event_host')
     .addColumn('society_id', 'uuid', (col) =>
-      col.notNull().references('societies.id')
+      col.notNull().references('society.id')
     )
     .addColumn('event_id', 'uuid', (col) =>
       col.notNull().references('events.id')
     )
-    .addPrimaryKeyConstraint('event_hosts_pkey', ['society_id', 'event_id'])
+    .addPrimaryKeyConstraint('event_host_pkey', ['society_id', 'event_id'])
     .execute();
 
   await db.schema
-    .createTable('event_sponsorships')
+    .createTable('event_sponsorship')
     .addColumn('event_id', 'uuid', (col) =>
-      col.notNull().references('events.id')
+      col.notNull().references('event.id')
     )
     .addColumn('sponsor_id', 'uuid', (col) =>
-      col.notNull().references('sponsors.id')
+      col.notNull().references('sponsor.id')
     )
-    .addPrimaryKeyConstraint('event_sponsorships_pkey', [
+    .addPrimaryKeyConstraint('event_sponsorship_pkey', [
       'event_id',
       'sponsor_id',
     ])
