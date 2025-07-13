@@ -1,8 +1,8 @@
 import cors from 'cors';
 import dotenv from 'dotenv';
-import express, { Express, Request,Response } from 'express';
+import express, { Express, Request, Response } from 'express';
 
-dotenv.config();
+dotenv.config({ path: '../.env/server.env' });
 
 const app: Express = express();
 app.use(cors());

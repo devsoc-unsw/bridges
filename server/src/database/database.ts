@@ -4,8 +4,8 @@ import { Pool } from 'pg';
 
 import { DB } from './db-types';
 
-// Load environment variables from .env
-dotenv.config();
+// Load environment variables from .env/database.env
+dotenv.config({ path: '../.env/database.env' });
 
 export const db = new Kysely<DB>({
   dialect: new PostgresDialect({
