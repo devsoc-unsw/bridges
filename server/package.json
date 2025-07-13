@@ -13,7 +13,10 @@
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'",
     "format": "prettier --write 'src/**/*.{ts,tsx}'",
-    "style": "prettier --write 'src/**/*.{ts,tsx}' && eslint --fix 'src/**/*.{ts,tsx}'"
+    "style": "prettier --write 'src/**/*.{ts,tsx}' && eslint --fix 'src/**/*.{ts,tsx}'",
+    "codegen": "kysely-codegen --dialect postgres --camel-case --out-file ./src/database/db-types.d.ts",
+    "migrate": "tsx src/database/migrate.ts",
+    "load-mock": "tsx src/database/mock-data.ts"
   },
   "keywords": [],
   "author": "DevSoc",
@@ -22,18 +25,22 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "kysely": "^0.28.2",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.31.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/node": "^24.0.13",
+    "@types/pg": "^8.15.4",
     "@typescript-eslint/parser": "^8.36.0",
     "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-unused-imports": "^4.1.4",
+    "kysely-codegen": "^0.18.5",
     "prettier": "^3.6.2",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
