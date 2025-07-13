@@ -1,0 +1,14 @@
+# name: CI Tests
+
+# on:
+#   pull_request:
+#     branches: main
+
+# jobs:
+#   run_lint:
+#     name: Linting CI Testing
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout to repository
+#         uses: actions/checkout@v4
+#       - name: Install Dependencies
