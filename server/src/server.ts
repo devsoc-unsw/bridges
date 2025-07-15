@@ -1,6 +1,9 @@
 import cors from 'cors';
 import dotenv from 'dotenv';
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
+
+import { getBridge } from './controllers/index';
+import { index } from './index';
 
 dotenv.config({ path: '../.env/server.env' });
 
@@ -10,14 +13,16 @@ app.use(express.json());
 
 const PORT = parseInt(process.env.PORT ?? '3001');
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
+/**
+ * Express Routes
+ */
+app.get('/', index);
+app.get('/api/bridge', getBridge);
 
-app.get('/api/home', (req: Request, res: Response) => {
-  res.json({ message: 'BRIDGES YASSS!' });
-});
-
+/**
+ * Listening connection
+ */
 app.listen(PORT, () => {
   console.log(`Server listening on port ${String(PORT)}`);
+  console.log('Press CTRL-C to stop\n');
 });

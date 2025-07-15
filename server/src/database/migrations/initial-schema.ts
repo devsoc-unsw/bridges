@@ -12,6 +12,7 @@ export async function up(db: Kysely<unknown>): Promise<void> {
     .addColumn('logo_url', 'text')
     .addColumn('member_count', 'integer')
     .addColumn('is_approved', 'boolean', (col) => col.notNull().defaultTo(false))
+    .addColumn('is_super_admin', 'boolean', (col) => col.notNull().defaultTo(false))
     .execute();
 
   await db.schema
@@ -25,6 +26,55 @@ export async function up(db: Kysely<unknown>): Promise<void> {
     .addColumn('society_id', 'uuid', (col) => col.references('society.id').onDelete('cascade').notNull())
     .addColumn('type', sql`social_media_type`, (col) => col.notNull())
     .addColumn('url', 'text', (col) => col.notNull())
+    .execute();
+
+  await db.schema
+    .createType('categories')
+    .asEnum([
+      'Academic/Networking',
+      'Arts (Humanities)',
+      'Business',
+      'Charity/Community Service',
+      'Create Arts',
+      'Engineering',
+      'Environment',
+      'Food',
+      'Games',
+      'Health',
+      'Hobby',
+      'International/Cultural',
+      'Making',
+      'Performance',
+      'Political',
+      'Religious/Spiritual',
+      'Science',
+      'Social',
+      'Sport',
+      'Technology',
+      'Other',
+      'Arc',
+      'Animals',
+      'Arts & Culture',
+      'Child/Youth',
+      'Education',
+      'Elderly',
+      'Fundraising',
+      'Indigenous',
+      'Refugees',
+      'Social Welfare',
+      'Sports',
+      'Volunteer - Campus',
+      'Volunteer - Community',
+      'Volunteer - Event',
+      'Volunteer Organisation',
+    ])
+    .execute();
+
+  await db.schema
+    .createTable('society_category')
+    .addColumn('id', 'serial', (col) => col.primaryKey())
+    .addColumn('society_id', 'uuid', (col) => col.references('society.id').onDelete('cascade').notNull())
+    .addColumn('category', sql`categories`, (col) => col.notNull())
     .execute();
 
   // Sponsors
@@ -72,6 +122,8 @@ export async function up(db: Kysely<unknown>): Promise<void> {
   // Indexing for faster queries
   await db.schema.createIndex('social_media_society_id_idx').on('social_media').column('society_id').execute();
 
+  await db.schema.createIndex('society_category_society_id_idx').on('society_category').column('society_id').execute();
+
   await db.schema
     .createIndex('society_sponsorship_society_id_idx')
     .on('society_sponsorship')
@@ -102,6 +154,7 @@ export async function down(db: Kysely<unknown>): Promise<void> {
   await db.schema.dropIndex('society_sponsorship_sponsor_id_idx').execute();
   await db.schema.dropIndex('society_sponsorship_society_id_idx').execute();
   await db.schema.dropIndex('social_media_society_id_idx').execute();
+  await db.schema.dropIndex('society_category_society_id_idx').execute();
 
   await db.schema.dropTable('event_sponsorship').execute();
   await db.schema.dropTable('event_host').execute();
