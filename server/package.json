@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "ExpressJS backend server for Bridges",
   "main": "dist/server.js",
-  "type": "module",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "esbuild src/server.ts --bundle --outdir=dist --platform=node --format=cjs --target=es2024 --sourcemap --external:express --external:node:*",
     "prestart": "pnpm run build",
     "start": "node dist/server.js",
     "dev": "tsx watch src/server.ts",
@@ -37,6 +36,7 @@
     "@types/node": "^24.0.13",
     "@types/pg": "^8.15.4",
     "@typescript-eslint/parser": "^8.36.0",
+    "esbuild": "^0.25.6",
     "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-simple-import-sort": "^12.1.1",

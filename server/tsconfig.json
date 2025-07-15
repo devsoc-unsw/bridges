@@ -4,10 +4,9 @@
     "target": "es2024",
     "jsx": "preserve",
     "module": "es2022",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "allowJs": true,
-    "noEmit": true,
     "isolatedModules": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -16,9 +15,6 @@
     "noUnusedLocals": true,
     "skipLibCheck": true,
     "outDir": "dist",
-    "paths": {
-      "@/*": ["./src/*"]
-    },
     "typeRoots": ["src/types", "node_modules/@types"]
   },
 

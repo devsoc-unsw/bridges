@@ -14,8 +14,10 @@ COPY . .
 # Install dependencies inside container based on pnpm-lock.yaml
 RUN pnpm install --frozen-lockfile
 
-# Exposing port
+# Setting node environment and exposing port
+ENV NODE_ENV=development
 EXPOSE 3000
+ENV PORT=3000
 
 # Run the server
 CMD ["pnpm", "run", "dev"]

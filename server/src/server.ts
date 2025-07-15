@@ -24,6 +24,6 @@ app.get('/api/devsoc', getDevSoc);
  * Listening connection
  */
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${String(PORT)}`);
+  console.log(`'App is running at http://localhost:${String(PORT)}`);
   console.log('Press CTRL-C to stop\n');
 });

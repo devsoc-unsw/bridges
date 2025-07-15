@@ -11,7 +11,7 @@ async function migrateToLatest() {
       fs,
       path,
       // This needs to be an absolute path.
-      migrationFolder: path.join(import.meta.dirname, './migrations'),
+      migrationFolder: path.join(__dirname, './migrations'),
     }),
   });
 
