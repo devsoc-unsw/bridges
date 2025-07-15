@@ -14,7 +14,9 @@
     "style": "prettier --write 'src/**/*.{ts,tsx}' && next lint --fix"
   },
   "dependencies": {
+    "dotenv": "^17.2.0",
     "next": "15.3.5",
+    "next-auth": "5.0.0-beta.29",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
