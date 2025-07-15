@@ -34,4 +34,4 @@ async function migrateToLatest() {
   await db.destroy();
 }
 
-await migrateToLatest();
+void migrateToLatest();

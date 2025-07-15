@@ -3,12 +3,15 @@
  * Please do not edit it manually.
  */
 
-import type { ColumnType } from 'kysely';
+import type { ColumnType } from "kysely";
 
-export type Generated<T> =
-  T extends ColumnType<infer S, infer I, infer U> ? ColumnType<S, I | undefined, U> : ColumnType<T, T | undefined, T>;
+export type Categories = "Academic/Networking" | "Animals" | "Arc" | "Arts (Humanities)" | "Arts & Culture" | "Business" | "Charity/Community Service" | "Child/Youth" | "Create Arts" | "Education" | "Elderly" | "Engineering" | "Environment" | "Food" | "Fundraising" | "Games" | "Health" | "Hobby" | "Indigenous" | "International/Cultural" | "Making" | "Other" | "Performance" | "Political" | "Refugees" | "Religious/Spiritual" | "Science" | "Social" | "Social Welfare" | "Sport" | "Sports" | "Technology" | "Volunteer - Campus" | "Volunteer - Community" | "Volunteer - Event" | "Volunteer Organisation";
 
-export type SocialMediaType = 'DISCORD' | 'FACEBOOK' | 'INSTAGRAM' | 'LINKEDIN' | 'OTHER' | 'YOUTUBE';
+export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
+  ? ColumnType<S, I | undefined, U>
+  : ColumnType<T, T | undefined, T>;
+
+export type SocialMediaType = "DISCORD" | "FACEBOOK" | "INSTAGRAM" | "LINKEDIN" | "OTHER" | "YOUTUBE";
 
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
@@ -44,10 +47,17 @@ export interface Society {
   description: string | null;
   id: Generated<string>;
   isApproved: Generated<boolean>;
+  isSuperAdmin: Generated<boolean>;
   loginEmail: string | null;
   logoUrl: string | null;
   memberCount: number | null;
   name: string;
+}
+
+export interface SocietyCategory {
+  category: Categories;
+  id: Generated<number>;
+  societyId: string;
 }
 
 export interface SocietySponsorship {
@@ -68,6 +78,7 @@ export interface DB {
   eventSponsorship: EventSponsorship;
   socialMedia: SocialMedia;
   society: Society;
+  societyCategory: SocietyCategory;
   societySponsorship: SocietySponsorship;
   sponsor: Sponsor;
 }

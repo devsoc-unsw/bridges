@@ -13,3 +13,5 @@ const result = await db
   .executeTakeFirst();
 
 console.log(`Inserted DevSoc. Added ${String(result.numInsertedOrUpdatedRows)} row(s)`);
+
+// TODO: Add more data
