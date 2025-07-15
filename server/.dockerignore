@@ -1,0 +1,5 @@
+node_modules
+*.md
+dist
+.pnpm
+.DS_Store

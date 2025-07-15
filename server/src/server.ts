@@ -2,10 +2,10 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express, { Express } from 'express';
 
-import { getBridge } from './controllers/index';
+import { getBridge, getDevSoc } from './controllers/index';
 import { index } from './index';
 
-dotenv.config({ path: '../.env/server.env' });
+dotenv.config({ path: '../env/server.env' });
 
 const app: Express = express();
 app.use(cors());
@@ -18,6 +18,7 @@ const PORT = parseInt(process.env.PORT ?? '3001');
  */
 app.get('/', index);
 app.get('/api/bridge', getBridge);
+app.get('/api/devsoc', getDevSoc);
 
 /**
  * Listening connection

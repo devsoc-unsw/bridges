@@ -1,15 +1,83 @@
 services:
   database:
     image: postgres:latest
+    container_name: database
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: bridges
     ports:
-     - '5432:5432'
+      - '5432:5432'
+    env_file:
+      - ./env/database.env
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - bridges_data:/var/lib/postgresql/data
+    networks:
+      - bridges-net
+  server-dev:
+    build:
+      context: ./server
+      dockerfile: dev.dockerfile
+    container_name: server
+    ports:
+      - '3001:3001'
+    env_file:
+      - ./env/server.env
+      - ./env/database.env
+    depends_on:
+      - database
+    volumes:
+      # Bind mount volume for live backend updates while developing
+      - ./server/src:/server/src
+    networks:
+      - bridges-net
+  server-prod:
+    build:
+      context: ./server
+      dockerfile: prod.dockerfile
+    container_name: server
+    ports:
+      - '3001:3001'
+    env_file:
+      - ./env/server.env
+      - ./env/database.env
+    depends_on:
+      - database
+    networks:
+      - bridges-net
+  client-dev:
+    build:
+      context: ./client
+      dockerfile: dev.dockerfile
+    container_name: client
+    ports:
+      - '3000:3000'
+    env_file:
+      - ./env/client.env
+    depends_on:
+      - server-dev
+    volumes:
+      # Bind mount volume for live frontend updates while developing
+      - ./client/src:/client/src
+    networks:
+      - bridges-net
+  client-prod:
+    build:
+      context: ./client
+      dockerfile: prod.dockerfile
+    container_name: client
+    ports:
+      - '3000:3000'
+    env_file:
+      - ./env/client.env
+    depends_on:
+      - server-prod
+    networks:
+      - bridges-net
 
 volumes:
-  postgres_data:
+  bridges_data:
+
+networks:
+  bridges-net:
