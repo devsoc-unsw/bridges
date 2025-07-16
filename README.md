@@ -4,21 +4,27 @@ Bridges is a web platform aimed at helping connect societies and sponsors!
 
 <!-- INSERT DEPLOYED LINK -->
 <!-- Get better description plus feature list in the future -->
+<!-- Include icon -->
 
 ## Table of Contents
 
+- [Features and Future Plans](#feature-and-future-plans)
 - [Contributing to Bridges](#contributing-to-bridges)
-- [Project Team Members](#project-team-members)
+- [Maintainers](#maintainers)
 - [License](#license)
 - [Feedback](#feedback)
 
+## Feature and Future Plans
+
+Bridges is currently in construction and has not yet released its MVP. See [REQUIREMENTS.md](./docs/REQUIREMENTS.md) for the scope of the project.
+
 ## Contributing to Bridges
 
-For information on setting up and contributing to Bridges, see [CONTRIBUTING.md](./CONTRIBUTING.md).
+For information on setting up and contributing to Bridges, see [CONTRIBUTING.md](./docs/CONTRIBUTING.md)
 
-## Project Team Members
+## Maintainers
 
-This project is built
+See [TEAM.md](./docs/TEAM.md) for the list of teams and individuals who have worked on the project. Open source contributions are welcome via issues, pull requests or otherwise.
 
 ## License
 

@@ -5,6 +5,7 @@ This document outlines the core feature requirements for the MVP release of the 
 ---
 
 ## 📐 View the wireframes here
+
 👉 [Figma – Bridges Wireframes](https://www.figma.com/design/WdcNLk34jY6GyhW54GLtTD/Wireframes?node-id=0-1&t=RjHSEahkGgskzj2i-1)
 
 ---
@@ -102,20 +103,24 @@ This document outlines the core feature requirements for the MVP release of the 
 ### Dashboard Features
 
 #### Overview
+
 - Summary of current profile and event listings
 - Visibility setting overview
 
 #### Profile Editor
+
 - Edit all profile fields manually
 - Re-upload PDF to update AI-generated content
 - Preview public-facing profile
 
 #### Event Manager
+
 - Add/edit events
 - Toggle "Looking for Sponsors"
 - Set event visibility (public / link-only)
 
 #### Visibility Controls
+
 - For both profile and events:
   - 🌐 Public
   - 🔗 Link-only
@@ -129,7 +134,6 @@ This document outlines the core feature requirements for the MVP release of the 
 - Admins review content before publishing
 - Future “Community Picks” section highlights real success stories
 
-
 ## 🔐 Link-Based Permissions System
 
 To avoid creating sponsor accounts:
@@ -140,4 +144,3 @@ To avoid creating sponsor accounts:
   - ✉️ Invite-only (optional future) – email-restricted
 - Sponsors can view content directly without logging in
 - Society admins manage visibility in their dashboard
-
