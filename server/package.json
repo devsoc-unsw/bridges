@@ -15,7 +15,7 @@
     "format": "prettier --write 'src/**/*.{ts,tsx}'",
     "style": "prettier --write 'src/**/*.{ts,tsx}' && eslint --fix 'src/**/*.{ts,tsx}'",
     "docker:codegen": "kysely-codegen --dialect postgres --camel-case --out-file ./src/database/db-types.d.ts",
-    "codegen": "kysely-codegen --dialect postgres --camel-case --env-file ../env/database.env --out-file ./src/database/db-types.d.ts",
+    "codegen": "kysely-codegen --dialect postgres --camel-case --env-file ../env/server.env --out-file ./src/database/db-types.d.ts",
     "migrate": "tsx src/database/migrate.ts",
     "load-mock": "tsx src/database/mock-data.ts"
   },

@@ -10,7 +10,7 @@ services:
     ports:
       - '5432:5432'
     env_file:
-      - ./env/database.env
+      - ./env/server.env
     volumes:
       - bridges_data:/var/lib/postgresql/data
     networks:
@@ -24,7 +24,6 @@ services:
       - '3001:3001'
     env_file:
       - ./env/server.env
-      - ./env/database.env
     depends_on:
       - database
     volumes:
@@ -41,7 +40,6 @@ services:
       - '3001:3001'
     env_file:
       - ./env/server.env
-      - ./env/database.env
     depends_on:
       - database
     networks:
