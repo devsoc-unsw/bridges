@@ -4,7 +4,7 @@ import { sql } from 'kysely';
 
 export const getAllSocieties = async (req: Request, res: Response) => {
   try {
-    const societies = await db.selectFrom('society').select(['name', 'logoUrl']).execute();
+    const societies = await db.selectFrom('society').select(['id', 'name', 'logoUrl']).execute();
     res.status(200).json(societies);
   } catch (err) {
     console.error(err);
