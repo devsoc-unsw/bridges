@@ -1,5 +1,5 @@
 import { getBridge } from './getBridges';
 import { getDevSoc } from './getDevSoc';
-import { getAllSocieties, getSocietyById } from './societyPublic';
+import { getAllSocieties, getSocietyById, getSocietyEvents } from './societyPublic';
 
-export { getBridge, getDevSoc, getAllSocieties, getSocietyById };
+export { getBridge, getDevSoc, getAllSocieties, getSocietyById, getSocietyEvents };

@@ -32,7 +32,33 @@ export const getSocietyById = async (req: Request, res: Response) => {
       .where('societyId', '=', societyId)
       .execute();
 
-    // Fetch events hosted by the society including other hosts and sponsors of each event
+    // Fetch sponsors associated with the society
+    const sponsors = await db
+      .selectFrom('societySponsorship')
+      .innerJoin('sponsor', 'societySponsorship.sponsorId', 'sponsor.id')
+      .selectAll('sponsor')
+      .where('societySponsorship.societyId', '=', societyId)
+      .execute();
+
+    res.status(200).json({
+      ...societyInfo,
+      socials,
+      sponsors,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: `Failed to fetch society with ID ${societyId}` });
+  }
+};
+
+export const getSocietyEvents = async (req: Request, res: Response) => {
+  // offset is used for pagination and is passed as a query parameter
+  const { societyId, offset } = req.params;
+  // Number of events to fetch per request
+  const limit = 5;
+
+  try {
+    // Fetch events hosted by the society including other hosts and sponsors of each event using pagination
     const events = await db
       .selectFrom('eventHost')
       .innerJoin('event', 'event.id', 'eventHost.eventId')
@@ -52,24 +78,19 @@ export const getSocietyById = async (req: Request, res: Response) => {
           .as('sponsors'),
       ])
       .where('eventHost.societyId', '=', societyId)
-      .execute();
-
-    // Fetch sponsors associated with the society
-    const sponsors = await db
-      .selectFrom('societySponsorship')
-      .innerJoin('sponsor', 'societySponsorship.sponsorId', 'sponsor.id')
-      .selectAll('sponsor')
-      .where('societySponsorship.societyId', '=', societyId)
+      .limit(limit + 1)
+      .offset(parseInt(offset as string) ?? 0)
       .execute();
 
     res.status(200).json({
-      ...societyInfo,
-      socials,
-      events,
-      sponsors,
+      events: events.slice(0, limit),
+      pagination: {
+        hasMore: events.length > limit ? true : false,
+        offset: offset + limit,
+      },
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: `Failed to fetch society with ID ${societyId}` });
+    res.status(500).json({ error: `Failed to fetch events for society with ID ${societyId}` });
   }
 };

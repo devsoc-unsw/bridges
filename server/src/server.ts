@@ -2,7 +2,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express, { Express } from 'express';
 
-import { getBridge, getDevSoc, getAllSocieties, getSocietyById } from './controllers/index';
+import { getBridge, getDevSoc, getAllSocieties, getSocietyById, getSocietyEvents } from './controllers/index';
 import { index } from './index';
 
 dotenv.config({ path: '../env/server.env' });
@@ -21,6 +21,7 @@ app.get('/api/bridge', getBridge);
 app.get('/api/devsoc', getDevSoc);
 app.get('/api/societies', getAllSocieties);
 app.get('/api/society/:societyId', getSocietyById);
+app.get('/api/society/:societyId/events', getSocietyEvents);
 
 /**
  * Listening connection
