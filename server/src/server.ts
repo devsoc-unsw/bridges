@@ -4,6 +4,7 @@ import express, { Express } from 'express';
 
 import { getBridge, getDevSoc } from './controllers/index';
 import { index } from './index';
+import { createSocietyEvent } from './controllers/events';
 
 dotenv.config({ path: '../env/server.env' });
 
@@ -19,6 +20,7 @@ const PORT = parseInt(process.env.PORT ?? '3001');
 app.get('/', index);
 app.get('/api/bridge', getBridge);
 app.get('/api/devsoc', getDevSoc);
+app.post('/api/events', createSocietyEvent);
 
 /**
  * Listening connection
