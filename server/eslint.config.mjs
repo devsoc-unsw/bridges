@@ -8,7 +8,7 @@ import unusedImports from 'eslint-plugin-unused-imports';
 
 export default tseslint.config(
   {
-    ignores: ["eslint.config.mjs"]
+    ignores: ['eslint.config.mjs'],
   },
   eslint.configs.recommended,
   tseslint.configs.recommendedTypeChecked,
@@ -36,17 +36,18 @@ export default tseslint.config(
     rules: {
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
-      'no-unused-vars': 'off',
-      'unused-imports/no-unused-imports': 'error',
-      'unused-imports/no-unused-vars': [
+      '@typescript-eslint/no-unused-vars': [
         'warn',
         {
           vars: 'all',
           varsIgnorePattern: '^_',
           args: 'after-used',
           argsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
         },
       ],
+      'unused-imports/no-unused-imports': 'error',
+      'unused-imports/no-unused-vars': 'off',
     },
-  },
+  }
 );
