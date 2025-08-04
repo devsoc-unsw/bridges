@@ -17,7 +17,7 @@ runs:
         cache: 'pnpm'
         cache-dependency-path: client/pnpm-lock.yaml
 
-    - name: Install Dependencies
+    - name: Install dependencies
       shell: bash
       run: pnpm install
       working-directory: ./client

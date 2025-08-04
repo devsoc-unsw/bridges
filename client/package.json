@@ -7,10 +7,11 @@
     "build": "next build",
     "start": "next start",
     "docker:prod": "next build && next start",
-    "tsc": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "format": "prettier --write 'src/**/*.{ts,tsx}'",
+    "format": "prettier --check 'src/**/*.{ts,tsx}'",
+    "format:fix": "prettier --write 'src/**/*.{ts,tsx}'",
     "style": "prettier --write 'src/**/*.{ts,tsx}' && next lint --fix"
   },
   "dependencies": {
