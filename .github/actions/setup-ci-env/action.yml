@@ -1,6 +1,14 @@
 name: 'Setup Environment Variables'
 description: 'Sets up the environment variables required for the testing containers.'
 
+inputs:
+  AUTH_GOOGLE_ID:
+    description: Google OAuth Client ID
+    required: true
+  AUTH_GOOGLE_SECRET:
+    description: Google OAuth Client Secret
+    required: true
+
 runs:
   using: 'composite'
   steps:
@@ -21,6 +29,6 @@ runs:
       run: |
         touch client.env
         echo 'AUTH_SECRET="'$(openssl rand -base64 32)'"' >> client.env
-        echo 'AUTH_GOOGLE_ID=${{ secrets.AUTH_GOOGLE_ID }}' >> client.env
-        echo 'AUTH_GOOGLE_SECRET=${{ secrets.AUTH_GOOGLE_SECRET }}' >> client.env
+        echo 'AUTH_GOOGLE_ID=${{ inputs.AUTH_GOOGLE_ID }}' >> client.env
+        echo 'AUTH_GOOGLE_SECRET=${{ inputs.AUTH_GOOGLE_SECRET }}' >> client.env
       working-directory: ./env
