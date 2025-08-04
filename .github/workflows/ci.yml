@@ -6,7 +6,7 @@ on:
 
 jobs:
   server_lint:
-    name: Server Linting CI Testing
+    name: Server Linting
     runs-on: ubuntu-latest
     steps:
       - name: Checkout to repository
@@ -17,7 +17,7 @@ jobs:
         run: ls && pnpm run lint
         working-directory: ./server
   server_typecheck:
-    name: Server Typecheck CI Testing
+    name: Server Typecheck
     runs-on: ubuntu-latest
     steps:
       - name: Checkout to repository
@@ -29,7 +29,7 @@ jobs:
         working-directory: ./server
 
   client_lint:
-    name: Client Linting CI Testing
+    name: Client Linting
     runs-on: ubuntu-latest
     steps:
       - name: Checkout to repository
@@ -40,7 +40,7 @@ jobs:
         run: ls && pnpm run lint
         working-directory: ./client
   client_typecheck:
-    name: Client Typecheck CI Testing
+    name: Client Typecheck
     runs-on: ubuntu-latest
     steps:
       - name: Checkout to repository
