@@ -1,0 +1,9 @@
+name: 'Setup Environment Variables'
+description: 'Sets up the environment variables required for the testing containers.'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Test run
+      shell: bash
+      run: echo "Hello World!"
