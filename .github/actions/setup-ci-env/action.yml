@@ -21,7 +21,6 @@ runs:
       run: |
         touch server.env
         echo 'DATABASE_URL=postgres://postgres:postgres@database:5432/bridges' >> server.env
-        cat server.env
       working-directory: ./env
 
     - name: Create client.env file
