@@ -10,7 +10,7 @@ If you have any features you would like to see or any issues you have experience
 
 To setup the project and contribute to the codebase please follow the guides written at [server/README.md](../server/README.md) and [client/README.md](../client/README.md). Note that you will need both directories set up in order to effectively contribute to the project.
 
-### Conventions
+### Git Conventions
 
 #### Branch Naming Guidelines
 
@@ -33,6 +33,15 @@ Your commit message should:
 - be prefixed with the type of change and the scope.
 
 To view more documentation and examples on good commit naming see [Conventional Commit Messages](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13).
+
+### Code Conventions
+
+This repository sets up formatting, linting typechecking and dockerisation tests for pull request to the main branch. To ensure that your code always passes these tests you can run each of the checks manually. View [ci.yml](../.github/workflows/ci.yml) to see all the commands run.
+
+In short you should run the following:
+
+- ensure that `pnpm run style` and `pnpm run typecheck` output no errors for both the `server/` and `client/` directories.
+- ensure that `docker compose up server-prod client-prod` from the root directory correctly builds and runs the containers.
 
 ## Docker Tips
 

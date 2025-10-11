@@ -2,7 +2,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express, { Express } from 'express';
 
-import { getBridge, getDevSoc, getAllSocieties, getSocietyById, getSocietyEvents } from './controllers/index';
+import { getAllSocieties, getBridge, getDevSoc, getSocietyById, getSocietyEvents } from './controllers/index';
 import { index } from './index';
 
 dotenv.config({ path: '../env/server.env' });

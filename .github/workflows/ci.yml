@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  server_checks:
+    name: Server ${{ matrix.check }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        check: [format, lint, typecheck]
+    steps:
+      - name: Checkout to repository
+        uses: actions/checkout@v4
+      - name: Install server dependencies
+        uses: ./.github/actions/setup-ci-server
+      - name: Run ${{ matrix.check }} check
+        run: pnpm run ${{ matrix.check }}
+        working-directory: ./server
+
+  client_checks:
+    name: Client ${{ matrix.check }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        check: [format, lint, typecheck]
+    steps:
+      - name: Checkout to repository
+        uses: actions/checkout@v4
+      - name: Install client dependencies
+        uses: ./.github/actions/setup-ci-client
+      - name: Run ${{ matrix.check }} check
+        run: pnpm run ${{ matrix.check }}
+        working-directory: ./client
+
+  docker_build:
+    name: Build docker containers
+    runs-on: ubuntu-latest
+    needs: [server_checks, client_checks]
+    steps:
+      - name: Checkout to repository
+        uses: actions/checkout@v4
+      - name: Setup environment
+        uses: ./.github/actions/setup-ci-env
+        with:
+          AUTH_GOOGLE_ID: ${{ secrets.AUTH_GOOGLE_ID }}
+          AUTH_GOOGLE_SECRET: ${{ secrets.AUTH_GOOGLE_SECRET }}
+      - name: Check the server successfully builds
+        run: docker compose build server-prod
+      - name: Check the client successfully builds
+        run: docker compose build client-prod
+      - name: Check that containers start successfully
+        run: docker compose up --wait --wait-timeout 90 server-prod client-prod
+      - name: Log output of containers
+        run: docker compose logs server-prod client-prod
+        continue-on-error: true

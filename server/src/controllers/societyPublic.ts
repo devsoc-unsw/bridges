@@ -1,6 +1,7 @@
-import { db } from '../database/database';
 import { Request, Response } from 'express';
 import { sql } from 'kysely';
+
+import { db } from '../database/database';
 
 export const getAllSocieties = async (req: Request, res: Response) => {
   try {
@@ -23,7 +24,7 @@ export const getSocietyById = async (req: Request, res: Response) => {
     }
 
     // Exclude private information
-    const { isApproved, isSuperAdmin, loginEmail, ...societyInfo } = society;
+    const { isApproved: _, isSuperAdmin: __, loginEmail: ___, ...societyInfo } = society;
 
     // Fetch social media links
     const socials = await db
@@ -54,6 +55,7 @@ export const getSocietyById = async (req: Request, res: Response) => {
 export const getSocietyEvents = async (req: Request, res: Response) => {
   // offset is used for pagination and is passed as a query parameter
   const { societyId, offset } = req.params;
+  const parsedOffset = parseInt(offset) || 0;
   // Number of events to fetch per request
   const limit = 5;
 
@@ -79,14 +81,14 @@ export const getSocietyEvents = async (req: Request, res: Response) => {
       ])
       .where('eventHost.societyId', '=', societyId)
       .limit(limit + 1)
-      .offset(parseInt(offset as string) ?? 0)
+      .offset(parsedOffset)
       .execute();
 
     res.status(200).json({
       events: events.slice(0, limit),
       pagination: {
         hasMore: events.length > limit ? true : false,
-        offset: offset + limit,
+        offset: parsedOffset + limit,
       },
     });
   } catch (err) {

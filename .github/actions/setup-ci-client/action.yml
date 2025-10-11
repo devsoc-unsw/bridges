@@ -1,0 +1,23 @@
+name: 'Setup Client Dependencies'
+description: 'Sets up the client dependencies required for the testing containers.'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 10
+        run_install: false
+
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 24
+        cache: 'pnpm'
+        cache-dependency-path: client/pnpm-lock.yaml
+
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install
+      working-directory: ./client
